@@ -4,7 +4,7 @@ import { Resend } from 'resend';
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
-const notificationEmail = process.env.NOTIFICATION_EMAIL || 'info@siliconegelfilm.com';
+const notificationEmail = process.env.NOTIFICATION_EMAIL || '1261457858@qq.com';
 
 function formatInquiryEmail(body: any) {
   const items = [
