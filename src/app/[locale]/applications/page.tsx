@@ -1,8 +1,7 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { getApplications } from '@/data/applications';
-import { Button } from '@/components/ui/button';
+import { localizeApplications } from '@/lib/localize';
 import { ArrowRight } from 'lucide-react';
 
 type Props = { params: Promise<{ locale: string }> };
@@ -13,17 +12,19 @@ export async function generateMetadata({ params }: Props) {
   return { title: t('title'), description: t('subtitle') };
 }
 
-export default async function ApplicationsPage() {
-  const applications = await getApplications();
+export default async function ApplicationsPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'applications' });
+  const applications = localizeApplications(await getApplications(), locale);
 
   return (
     <div className="container-custom py-12 md:py-16">
       <div className="max-w-2xl mb-12">
         <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-          Applications
+          {t('title')}
         </h1>
         <p className="mt-3 text-lg text-muted-foreground">
-          Our silicone gel film is used across a wide range of industries including medical, industrial, and electronics.
+          {t('subtitle')}
         </p>
       </div>
 
@@ -42,7 +43,7 @@ export default async function ApplicationsPage() {
             </h3>
             <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{app.subtitle}</p>
             <span className="text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-              Learn More →
+              {t('learnMore')} →
             </span>
           </Link>
         ))}

@@ -1,162 +1,163 @@
 {
   "nav": {
-    "home": "Home",
-    "products": "Products",
-    "applications": "Applications",
-    "about": "About Us",
-    "contact": "Contact",
-    "blog": "Blog",
-    "faq": "FAQ",
-    "inquireNow": "Inquire Now"
+    "home": "首页",
+    "products": "产品中心",
+    "applications": "应用领域",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "blog": "博客",
+    "faq": "常见问题",
+    "inquireNow": "立即询价"
   },
   "home": {
     "hero": {
-      "title": "Double-Sided Silicone Gel Perforated Film",
-      "subtitle": "Premium raw material for foam dressing and medical wound care manufacturing — precision perforation, consistent adhesion, global supply.",
-      "cta_products": "Explore Products",
-      "cta_quote": "Request a Quote"
+      "title": "双面有机硅凝胶涂布微孔膜",
+      "subtitle": "泡沫敷料与医用伤口护理制造的优质原材料 — 精密微孔涂布，粘附力稳定，全球供应保障。",
+      "cta_products": "查看产品",
+      "cta_quote": "获取报价"
     },
     "stats": {
-      "years": "12+ Years Experience",
-      "countries": "50+ Countries Exported",
-      "clients": "500+ Global Clients",
-      "capacity": "100,000+ sqm Monthly Capacity"
+      "years": "12+ 年行业经验",
+      "countries": "出口 50+ 个国家",
+      "clients": "500+ 全球客户",
+      "capacity": "月产能 100,000+ 平方米"
     },
     "overview": {
-      "title": "Our Products",
-      "subtitle": "High-performance silicone gel films engineered for medical and industrial applications."
+      "title": "我们的产品",
+      "subtitle": "为医疗和工业应用精心研发的高性能有机硅凝胶薄膜。"
     },
     "applications": {
-      "title": "Applications",
-      "subtitle": "Versatile solutions for diverse industries."
+      "title": "应用领域",
+      "subtitle": "为多行业提供 versatile 解决方案。"
     },
     "whyUs": {
-      "title": "Why Choose Us",
+      "title": "为什么选择我们",
       "items": {
-        "materials": { "title": "Premium Raw Materials", "desc": "Sourced from top global suppliers, medically certified." },
-        "technology": { "title": "Precision Perforation", "desc": "Advanced micro-perforation for consistent airflow and adhesion." },
-        "quality": { "title": "Strict Quality Control", "desc": "ISO 13485 certified, full traceability from raw material to finished roll." },
-        "logistics": { "title": "Global Logistics", "desc": "Reliable shipping worldwide via air, sea, and express." },
-        "oem": { "title": "OEM/ODM Support", "desc": "Custom sizes, thickness, and packaging to meet your specs." },
-        "samples": { "title": "Free Samples", "desc": "Request free samples to evaluate quality before bulk order." }
+        "materials": { "title": "优质原材料", "desc": "全球顶级供应商采购，通过医用级认证。" },
+        "technology": { "title": "精密微孔涂布", "desc": "先进的微孔涂布技术，确保透气性与粘附力均匀一致。" },
+        "quality": { "title": "严格质量控制", "desc": "ISO 13485 认证，从原料到成品全程可追溯。" },
+        "logistics": { "title": "全球物流", "desc": "支持空运、海运、快递，可靠发往全球各地。" },
+        "oem": { "title": "OEM/ODM 定制", "desc": "可定制尺寸、厚度、包装，满足您的个性化需求。" },
+        "samples": { "title": "免费样品", "desc": "批量下单前可申请免费样品，实地评估品质。" }
       }
     },
     "certifications": {
-      "title": "Certifications & Compliance"
+      "title": "资质认证与合规"
     },
     "cta": {
-      "title": "Ready to Source Your Silicone Gel Film?",
-      "subtitle": "Get a competitive quote within 24 hours.",
-      "button": "Request a Quote"
+      "title": "准备采购有机硅凝胶膜？",
+      "subtitle": "24 小时内获取具有竞争力的报价。",
+      "button": "获取报价"
     }
   },
   "products": {
-    "title": "Products",
-    "subtitle": "Comprehensive range of double-sided silicone gel perforated films for medical and industrial use.",
-    "details": "Product Details",
-    "specifications": "Technical Specifications",
-    "features": "Key Features",
-    "applications": "Applications",
-    "relatedProducts": "Related Products",
-    "inquireTitle": "Request a Quote for This Product",
-    "noProducts": "No products found.",
+    "title": "产品中心",
+    "subtitle": "全面的双面有机硅凝胶涂布微孔膜产品系列，适用于医疗和工业领域。",
+    "details": "产品详情",
+    "specifications": "技术规格",
+    "features": "关键特性",
+    "applications": "应用领域",
+    "relatedProducts": "相关产品",
+    "inquireTitle": "申请本产品报价",
+    "noProducts": "未找到相关产品。",
     "filter": {
-      "title": "Filter",
-      "all": "All Products",
-      "clear": "Clear Filters"
+      "title": "筛选",
+      "all": "全部产品",
+      "clear": "清除筛选"
     },
     "specs": {
-      "thickness": "Thickness",
-      "width": "Width",
-      "length": "Length",
-      "adhesiveStrength": "Adhesive Strength",
-      "temperatureResistance": "Temp. Resistance",
-      "shelfLife": "Shelf Life",
-      "poreSize": "Pore Size",
-      "breathability": "Breathability"
+      "thickness": "厚度",
+      "width": "幅宽",
+      "length": "长度",
+      "adhesiveStrength": "粘附强度",
+      "temperatureResistance": "耐温性",
+      "shelfLife": "保质期",
+      "poreSize": "孔径",
+      "breathability": "透气性"
     }
   },
   "applications": {
-    "title": "Applications",
-    "subtitle": "Our silicone gel film is used across a wide range of industries.",
-    "learnMore": "Learn More",
-    "relatedProducts": "Recommended Products for This Application",
-    "cta": "Get Customized Solution for Your Application"
+    "title": "应用领域",
+    "subtitle": "我们的有机硅凝胶膜广泛应用于各行业。",
+    "learnMore": "了解更多",
+    "relatedProducts": "推荐产品",
+    "cta": "获取针对您应用的定制化解决方案"
   },
   "about": {
-    "title": "About Us",
-    "subtitle": "Your trusted partner in silicone gel film manufacturing.",
-    "story": "Our Story",
-    "storyDesc": "With over 12 years of experience, we specialize in the R&D and production of double-sided silicone gel perforated films. Our state-of-the-art facility and dedicated team ensure consistent quality and innovation.",
-    "factory": "Our Factory",
-    "quality": "Quality Control",
-    "qualityDesc": "From incoming raw material inspection to in-process monitoring and final product testing, every batch undergoes rigorous quality checks to meet international medical device standards.",
-    "certifications": "Certifications",
-    "team": "Our Team",
-    "global": "Global Presence",
-    "globalDesc": "Our products are exported to over 50 countries worldwide, trusted by leading medical device manufacturers."
+    "title": "关于我们",
+    "subtitle": "您值得信赖的有机硅凝胶膜制造合作伙伴。",
+    "story": "公司简介",
+    "storyDesc": "拥有超过 12 年行业经验，专注于双面有机硅凝胶涂布微孔膜的研发与生产。我们配备先进的生产设施和专业的团队，确保产品品质稳定、持续创新。",
+    "factory": "生产基地",
+    "quality": "质量控制",
+    "qualityDesc": "从来料检验到过程监控再到成品检测，每批次产品均经过严格的质量检查，符合国际医疗器械标准。",
+    "certifications": "资质认证",
+    "team": "我们的团队",
+    "global": "全球布局",
+    "globalDesc": "产品出口至全球 50 多个国家，受到众多领先医疗器械制造商的信赖。"
   },
   "contact": {
-    "title": "Contact Us",
-    "subtitle": "Get in touch with our sales team for inquiries, samples, or technical support.",
+    "title": "联系我们",
+    "subtitle": "如有询价、样品或技术支持需求，请与我们的销售团队取得联系。",
     "form": {
-      "title": "Send an Inquiry",
-      "productInterest": "Product of Interest",
-      "quantity": "Estimated Quantity",
-      "quantityPlaceholder": "e.g. 500-1000 sqm",
-      "specifications": "Specific Requirements",
-      "specificationsPlaceholder": "Custom specifications, dimensions, packaging...",
-      "companyName": "Company Name",
-      "contactName": "Contact Person",
-      "email": "Email Address",
-      "phone": "Phone Number",
-      "country": "Country / Region",
-      "message": "Message",
-      "messagePlaceholder": "Tell us about your application or requirements...",
-      "submit": "Submit Inquiry",
-      "success": "Thank you! We will get back to you within 24 hours.",
-      "error": "Something went wrong. Please try again or email us directly."
+      "title": "提交询盘",
+      "productInterest": "感兴趣的产品",
+      "quantity": "预估数量",
+      "quantityPlaceholder": "例如 500-1000 平方米",
+      "specifications": "特殊要求",
+      "specificationsPlaceholder": "定制规格、尺寸、包装要求...",
+      "companyName": "公司名称",
+      "contactName": "联系人",
+      "email": "电子邮箱",
+      "phone": "联系电话",
+      "country": "国家/地区",
+      "message": "留言",
+      "messagePlaceholder": "请描述您的应用场景或需求...",
+      "submit": "提交询盘",
+      "success": "感谢您的询盘！我们将在 24 小时内与您联系。",
+      "error": "提交失败，请重试或直接发送邮件给我们。"
     },
     "info": {
-      "title": "Contact Information",
-      "response": "We respond within 24 hours on business days.",
-      "address": "Address",
-      "phone": "Phone",
-      "email": "Email"
+      "title": "联系方式",
+      "response": "工作日 24 小时内回复。",
+      "address": "公司地址",
+      "phone": "电话",
+      "email": "邮箱"
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Find answers to common questions about our products and services.",
+    "title": "常见问题",
+    "subtitle": "查找关于我们产品与服务的常见问题解答。",
     "categories": {
-      "product": "Product",
-      "ordering": "Ordering & Shipping",
-      "technical": "Technical",
-      "company": "Company"
+      "product": "产品相关",
+      "ordering": "订购与发货",
+      "technical": "技术相关",
+      "company": "公司相关"
     }
   },
   "blog": {
-    "title": "Blog & Resources",
-    "subtitle": "Industry insights, technical guides, and company updates.",
-    "readMore": "Read More",
-    "by": "By",
-    "on": "on",
-    "relatedArticles": "Related Articles",
-    "share": "Share"
+    "title": "博客与资源",
+    "subtitle": "行业洞察、技术指南和公司动态。",
+    "readMore": "阅读更多",
+    "by": "作者",
+    "on": "发布于",
+    "relatedArticles": "相关文章",
+    "share": "分享"
   },
   "common": {
-    "inquireNow": "Inquire Now",
-    "viewDetails": "View Details",
-    "requestQuote": "Request a Quote",
-    "learnMore": "Learn More",
-    "contactUs": "Contact Us",
-    "subscribe": "Subscribe",
-    "subscribePlaceholder": "Enter your email",
-    "subscribeSuccess": "Subscribed successfully!",
-    "backToHome": "Back to Home",
-    "pageNotFound": "Page Not Found",
-    "pageNotFoundDesc": "The page you are looking for does not exist.",
-    "copyright": "All rights reserved.",
-    "allRightsReserved": "All Rights Reserved"
+    "inquireNow": "立即询价",
+    "viewDetails": "查看详情",
+    "requestQuote": "获取报价",
+    "learnMore": "了解更多",
+    "contactUs": "联系我们",
+    "viewAll": "查看全部",
+    "subscribe": "订阅",
+    "subscribePlaceholder": "输入您的邮箱",
+    "subscribeSuccess": "订阅成功！",
+    "backToHome": "返回首页",
+    "pageNotFound": "页面未找到",
+    "pageNotFoundDesc": "您访问的页面不存在。",
+    "copyright": "版权所有。",
+    "allRightsReserved": "保留所有权利"
   }
 }

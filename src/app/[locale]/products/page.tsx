@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { getAllProducts } from '@/data/products';
+import { localizeProducts } from '@/lib/localize';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -28,7 +29,8 @@ export default async function ProductsPage({ params, searchParams }: Props) {
   const { locale } = await params;
   const sp = await searchParams;
   const t = await getTranslations({ locale, namespace: 'products' });
-  const products = await getAllProducts();
+  const ct = await getTranslations({ locale, namespace: 'common' });
+  const products = localizeProducts(await getAllProducts(), locale);
   const filtered = sp.category
     ? products.filter((p) => p.category === sp.category)
     : products;
@@ -76,11 +78,11 @@ export default async function ProductsPage({ params, searchParams }: Props) {
             </CardContent>
             <CardFooter className="flex gap-3">
               <Link href={`/products/${product.slug}`}>
-                <Button variant="outline" size="sm">View Details</Button>
+                <Button variant="outline" size="sm">{ct('viewDetails')}</Button>
               </Link>
               <Link href={`/contact?product=${product.slug}`}>
                 <Button size="sm" className="gap-1">
-                  Inquire Now <ArrowRight className="h-3 w-3" />
+                  {ct('inquireNow')} <ArrowRight className="h-3 w-3" />
                 </Button>
               </Link>
             </CardFooter>

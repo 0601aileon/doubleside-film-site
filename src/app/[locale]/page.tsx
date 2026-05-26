@@ -7,10 +7,14 @@ import WhyChooseUs from '@/components/home/why-choose-us';
 import CTABanner from '@/components/home/cta-banner';
 import { getFeaturedProducts } from '@/data/products';
 import { getApplications } from '@/data/applications';
+import { localizeProducts, localizeApplications } from '@/lib/localize';
 
-export default async function HomePage() {
-  const featuredProducts = await getFeaturedProducts();
-  const applications = await getApplications();
+type Props = { params: Promise<{ locale: string }> };
+
+export default async function HomePage({ params }: Props) {
+  const { locale } = await params;
+  const featuredProducts = localizeProducts(await getFeaturedProducts(), locale);
+  const applications = localizeApplications(await getApplications(), locale);
 
   return (
     <>

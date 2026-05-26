@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { getProductBySlug, getRelatedProducts } from '@/data/products';
+import { localizeProduct } from '@/lib/localize';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -16,7 +17,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -31,18 +31,22 @@ export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
   const product = await getProductBySlug(slug);
   if (!product) return { title: 'Product Not Found' };
+  const localized = localizeProduct(product, locale);
   return {
-    title: product.name,
-    description: product.subtitle || product.description?.slice(0, 160),
+    title: localized.name,
+    description: localized.subtitle || localized.description?.slice(0, 160),
   };
 }
 
 export default async function ProductDetailPage({ params }: Props) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const product = await getProductBySlug(slug);
   if (!product) notFound();
 
-  const relatedProducts = await getRelatedProducts(product.id);
+  const t = await getTranslations({ locale, namespace: 'products' });
+  const ct = await getTranslations({ locale, namespace: 'common' });
+  const localized = localizeProduct(product, locale);
+  const relatedProducts = (await getRelatedProducts(product.id)).map((rp) => localizeProduct(rp, locale));
 
   const specIcons: Record<string, React.ReactNode> = {
     'products.specs.thickness': <Ruler className="h-4 w-4" />,
@@ -54,15 +58,26 @@ export default async function ProductDetailPage({ params }: Props) {
     'products.specs.breathability': <Droplets className="h-4 w-4" />,
   };
 
+  const specLabel = (key: string) => {
+    const parts = key.split('.');
+    if (parts.length >= 3) {
+      const ns = parts.slice(0, -1).join('.');
+      const k = parts[parts.length - 1];
+      // Use the translation system - try to get from messages
+      return t(`specs.${k}` as any);
+    }
+    return parts.pop();
+  };
+
   return (
     <div className="container-custom py-12 md:py-16">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
-        <Link href="/" className="hover:text-foreground">Home</Link>
+        <Link href="/" className="hover:text-foreground">{ct('backToHome')}</Link>
         <span>/</span>
-        <Link href="/products" className="hover:text-foreground">Products</Link>
+        <Link href="/products" className="hover:text-foreground">{t('title')}</Link>
         <span>/</span>
-        <span className="text-foreground">{product.name}</span>
+        <span className="text-foreground">{localized.name}</span>
       </nav>
 
       <div className="grid lg:grid-cols-5 gap-10">
@@ -79,12 +94,12 @@ export default async function ProductDetailPage({ params }: Props) {
 
           {/* Product Info */}
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">{product.name}</h1>
-            {product.subtitle && (
-              <p className="mt-2 text-lg text-muted-foreground">{product.subtitle}</p>
+            <h1 className="text-3xl font-bold tracking-tight">{localized.name}</h1>
+            {localized.subtitle && (
+              <p className="mt-2 text-lg text-muted-foreground">{localized.subtitle}</p>
             )}
             <div className="flex flex-wrap gap-2 mt-4">
-              <Badge variant="secondary" className="capitalize">{product.category.replace('-', ' ')}</Badge>
+              <Badge variant="secondary">{product.categoryNameZh || product.category.replace('-', ' ')}</Badge>
               {product.applications.map((app) => (
                 <Badge key={app} variant="outline" className="capitalize">{app.replace('-', ' ')}</Badge>
               ))}
@@ -92,9 +107,9 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
 
           {/* Description */}
-          {product.description && (
+          {localized.description && (
             <div className="prose prose-sm max-w-none text-muted-foreground">
-              {product.description.split('\n\n').map((para, i) => (
+              {localized.description.split('\n\n').map((para, i) => (
                 <p key={i} className="mb-4 leading-relaxed">{para}</p>
               ))}
             </div>
@@ -107,7 +122,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 <div className="flex justify-center mb-2 text-primary">
                   {specIcons[spec.key] || <Ruler className="h-4 w-4" />}
                 </div>
-                <p className="text-xs text-muted-foreground mb-1">{spec.key.split('.').pop()}</p>
+                <p className="text-xs text-muted-foreground mb-1">{specLabel(spec.key)}</p>
                 <p className="text-sm font-semibold">{spec.value}</p>
               </div>
             ))}
@@ -115,18 +130,18 @@ export default async function ProductDetailPage({ params }: Props) {
 
           {/* Full Spec Table */}
           <div>
-            <h2 className="text-xl font-semibold mb-4">Technical Specifications</h2>
+            <h2 className="text-xl font-semibold mb-4">{t('specifications')}</h2>
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Property</TableHead>
+                  <TableHead>{t('specs.thickness') ? 'Property' : 'Property'}</TableHead>
                   <TableHead>Value</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {product.specifications.map((spec) => (
                   <TableRow key={spec.key}>
-                    <TableCell className="font-medium">{spec.key.split('.').pop()}</TableCell>
+                    <TableCell className="font-medium">{specLabel(spec.key)}</TableCell>
                     <TableCell>{spec.value}</TableCell>
                   </TableRow>
                 ))}
@@ -136,9 +151,9 @@ export default async function ProductDetailPage({ params }: Props) {
 
           {/* Features */}
           <div>
-            <h2 className="text-xl font-semibold mb-4">Key Features</h2>
+            <h2 className="text-xl font-semibold mb-4">{t('features')}</h2>
             <div className="grid sm:grid-cols-2 gap-3">
-              {product.features.map((feature, i) => (
+              {localized.features.map((feature, i) => (
                 <div key={i} className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                   <span className="text-sm text-muted-foreground">{feature}</span>
@@ -153,8 +168,8 @@ export default async function ProductDetailPage({ params }: Props) {
               <div className="flex items-center gap-3">
                 <FileText className="h-8 w-8 text-primary" />
                 <div>
-                  <p className="font-semibold text-sm">Product Datasheet</p>
-                  <p className="text-xs text-muted-foreground">PDF Download</p>
+                  <p className="font-semibold text-sm">{t('details')}</p>
+                  <p className="text-xs text-muted-foreground">PDF</p>
                 </div>
               </div>
               <a
@@ -162,7 +177,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 download
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-input bg-background h-7 px-2.5 text-sm font-medium whitespace-nowrap transition-all hover:bg-muted hover:text-foreground"
               >
-                <Download className="h-4 w-4" /> Download
+                <Download className="h-4 w-4" /> {ct('viewDetails')}
               </a>
             </div>
           )}
@@ -170,7 +185,7 @@ export default async function ProductDetailPage({ params }: Props) {
           {/* Related Products */}
           {relatedProducts.length > 0 && (
             <div>
-              <h2 className="text-xl font-semibold mb-4">Related Products</h2>
+              <h2 className="text-xl font-semibold mb-4">{t('relatedProducts')}</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {relatedProducts.map((rp) => (
                   <Link key={rp.id} href={`/products/${rp.slug}`}>
@@ -194,11 +209,11 @@ export default async function ProductDetailPage({ params }: Props) {
           <div className="lg:sticky lg:top-24 space-y-6">
             <Card className="border-primary/20">
               <CardHeader>
-                <CardTitle className="text-lg">Request a Quote</CardTitle>
+                <CardTitle className="text-lg">{ct('requestQuote')}</CardTitle>
                 <CardDescription>Fill in your details and we&apos;ll get back to you within 24 hours.</CardDescription>
               </CardHeader>
               <CardContent>
-                <InquiryForm productName={product.name} productId={product.id} />
+                <InquiryForm productName={localized.name} productId={product.id} />
               </CardContent>
             </Card>
 
@@ -208,12 +223,12 @@ export default async function ProductDetailPage({ params }: Props) {
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Category</span>
-                  <span className="font-medium capitalize">{product.category.replace('-', ' ')}</span>
+                  <span className="text-muted-foreground">{t('filter.title')}</span>
+                  <span className="font-medium">{product.categoryNameZh || product.category.replace('-', ' ')}</span>
                 </div>
                 {product.shelfLife && (
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Shelf Life</span>
+                    <span className="text-muted-foreground">{t('specs.shelfLife')}</span>
                     <span className="font-medium">{product.shelfLife}</span>
                   </div>
                 )}

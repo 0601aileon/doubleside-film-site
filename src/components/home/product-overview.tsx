@@ -15,6 +15,7 @@ import { ArrowRight, Ruler, Thermometer, Calendar } from 'lucide-react';
 
 export default function ProductOverview({ products }: { products: Product[] }) {
   const t = useTranslations('home.overview');
+  const common = useTranslations('common');
 
   return (
     <section className="bg-white">
@@ -68,12 +69,12 @@ export default function ProductOverview({ products }: { products: Product[] }) {
               <CardFooter className="flex gap-3">
                 <Link href={`/products/${product.slug}`}>
                   <Button variant="outline" size="sm">
-                    {t('common.viewDetails', {}) || 'View Details'}
+                    {common('viewDetails')}
                   </Button>
                 </Link>
                 <Link href={`/contact?product=${product.slug}`}>
                   <Button size="sm" className="gap-1">
-                    {t('common.inquireNow', {}) || 'Inquire Now'}
+                    {common('inquireNow')}
                     <ArrowRight className="h-3 w-3" />
                   </Button>
                 </Link>
@@ -85,7 +86,7 @@ export default function ProductOverview({ products }: { products: Product[] }) {
         <div className="text-center mt-10">
           <Link href="/products">
             <Button variant="outline" className="gap-2">
-              View All Products <ArrowRight className="h-4 w-4" />
+              {common('viewAll') || 'View All Products'} <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
         </div>

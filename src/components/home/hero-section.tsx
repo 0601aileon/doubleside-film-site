@@ -38,8 +38,9 @@ export default function HeroSection() {
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto text-base border-blue-400/30 text-white hover:bg-blue-400/10">
+              <Button size="lg" className="w-full sm:w-auto text-base gap-2 bg-white text-black hover:bg-blue-50">
                 {t('cta_quote')}
+                <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
           </div>

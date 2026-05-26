@@ -1,16 +1,15 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
-import { Globe } from 'lucide-react';
 import { useTransition } from 'react';
 
 const localeNames: Record<string, string> = {
-  en: 'EN',
+  en: 'English',
   zh: '中文',
-  es: 'ES',
-  de: 'DE',
+  es: 'Español',
+  de: 'Deutsch',
 };
 
 export default function LanguageSwitcher() {
@@ -25,26 +24,32 @@ export default function LanguageSwitcher() {
     });
   }
 
-  const availableLocales = Object.keys(localeNames).filter((l) => l !== locale);
+  const isZh = locale === 'zh';
 
   return (
-    <div className="flex items-center gap-1">
-      <Globe className="h-4 w-4 text-muted-foreground" />
-      <span className="text-sm font-medium text-muted-foreground mr-1">
-        {localeNames[locale]}
-      </span>
-      {availableLocales.slice(0, 2).map((l) => (
-        <Button
-          key={l}
-          variant="ghost"
-          size="xs"
-          disabled={isPending}
-          onClick={() => switchLocale(l)}
-          className="text-xs text-muted-foreground hover:text-foreground h-6 px-1.5"
-        >
-          {localeNames[l]}
-        </Button>
-      ))}
+    <div className="flex items-center border rounded-lg overflow-hidden">
+      <button
+        onClick={() => switchLocale('zh')}
+        disabled={isPending || isZh}
+        className={`px-3 py-1.5 text-xs font-medium transition-colors ${
+          isZh
+            ? 'bg-primary text-primary-foreground'
+            : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+        }`}
+      >
+        中文
+      </button>
+      <button
+        onClick={() => switchLocale('en')}
+        disabled={isPending || !isZh}
+        className={`px-3 py-1.5 text-xs font-medium transition-colors ${
+          !isZh
+            ? 'bg-primary text-primary-foreground'
+            : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+        }`}
+      >
+        EN
+      </button>
     </div>
   );
 }

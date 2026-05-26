@@ -1,99 +1,124 @@
-export interface FAQ {
-  id: number;
-  category: 'product' | 'ordering' | 'technical' | 'company';
-  question: string;
-  answer: string;
-}
+import { FAQ } from '@/types/faq';
 
 export const faqs: FAQ[] = [
   {
     id: 1,
     category: 'product',
     question: 'What is double-sided silicone gel perforated film?',
+    questionZh: '什么是双面有机硅凝胶涂布微孔膜？',
     answer: 'It is a thin silicone gel film coated with medical-grade adhesive on both sides, with uniform micro-perforations. It is used as the adhesive layer in foam dressings, medical tapes, transdermal patches, and various industrial applications. The perforations allow for breathability and moisture vapor transmission.',
+    answerZh: '这是一种两面涂覆医用级粘合剂并带有均匀微孔的薄膜，用作泡沫敷料、医用胶带、透皮贴剂及各种工业应用中的粘合层。微孔设计使其具有良好的透气性和水蒸气透过性。',
   },
   {
     id: 2,
     category: 'product',
     question: 'What are the standard specifications available?',
+    questionZh: '有哪些标准规格可供选择？',
     answer: 'Our standard films range from 0.15 mm to 0.5 mm in thickness and 50 mm to 1500 mm in width. Perforation sizes from 0.3 mm to 3.0 mm are available. We also offer custom specifications to meet your exact requirements.',
+    answerZh: '我们的标准薄膜厚度范围为 0.15 mm 至 0.5 mm，宽度为 50 mm 至 1500 mm。孔径尺寸从 0.3 mm 到 3.0 mm 可选。我们也提供定制规格以满足您的具体要求。',
   },
   {
     id: 3,
     category: 'product',
     question: 'Is your silicone gel film medical-grade?',
+    questionZh: '你们的有机硅凝胶膜是医用级的吗？',
     answer: 'Yes, our medical-grade silicone gel films are manufactured in an ISO 13485 certified facility and are biocompatible per ISO 10993 standards. They are suitable for wound contact applications.',
+    answerZh: '是的，我们的医用级有机硅凝胶膜在 ISO 13485 认证的工厂生产，符合 ISO 10993 标准的生物相容性要求，适用于伤口接触应用。',
   },
   {
     id: 4,
     category: 'product',
     question: 'What certifications do your products have?',
+    questionZh: '产品有哪些认证？',
     answer: 'Our manufacturing facility is ISO 13485:2016 certified for medical device quality management. Our medical-grade products are biocompatible (ISO 10993), and we can provide CE marking documentation and FDA registration information upon request.',
+    answerZh: '我们的生产基地已通过 ISO 13485:2016 医疗器械质量管理体系认证。医用级产品具有生物相容性（ISO 10993），可根据要求提供 CE 标志文件和 FDA 注册信息。',
   },
   {
     id: 5,
     category: 'ordering',
     question: 'What is the minimum order quantity (MOQ)?',
+    questionZh: '最小起订量是多少？',
     answer: 'Our standard MOQ is 100 square meters for stock specifications. Custom specifications may require a larger MOQ depending on complexity. We also offer sample rolls (minimum charge applies) for evaluation purposes.',
+    answerZh: '标准规格的最小起订量为 100 平方米。定制规格视复杂程度可能需要更大的起订量。我们也提供样品卷（需收取最低费用）供客户评估。',
   },
   {
     id: 6,
     category: 'ordering',
     question: 'What are your payment terms?',
+    questionZh: '付款条件是什么？',
     answer: 'We accept T/T (wire transfer) and L/C for international orders. Standard payment terms are 30% deposit with 70% balance before shipment. Long-term partners may qualify for more favorable terms.',
+    answerZh: '我们接受电汇（T/T）和信用证（L/C）。标准付款条件为 30% 定金，70% 发货前付清。长期合作客户可享受更优惠条件。',
   },
   {
     id: 7,
     category: 'ordering',
     question: 'What is your typical lead time?',
+    questionZh: '典型交货期是多久？',
     answer: 'Standard products typically ship within 15-20 working days from order confirmation. Custom specifications may require 25-35 working days. Rush orders can be accommodated upon request.',
+    answerZh: '标准产品一般在订单确认后 15-20 个工作日内发货。定制规格可能需要 25-35 个工作日。加急订单可根据要求安排。',
   },
   {
     id: 8,
     category: 'ordering',
     question: 'Do you provide free samples?',
+    questionZh: '你们提供免费样品吗？',
     answer: 'Yes, we provide free samples for qualified manufacturers and distributors. Sample quantities are typically A4-sized sheets or small rolls. The customer bears the shipping cost. Contact our sales team to request samples.',
+    answerZh: '是的，我们为合格的制造商和经销商提供免费样品。样品通常为 A4 尺寸的片材或小卷。客户承担运费。请联系我们的销售团队索取样品。',
   },
   {
     id: 9,
     category: 'ordering',
     question: 'How do you ship internationally?',
+    questionZh: '如何安排国际运输？',
     answer: 'We ship worldwide via air freight, sea freight, and express courier (DHL, FedEx, UPS). We can arrange shipping or you can use your own freight forwarder. We have experience exporting to over 50 countries.',
+    answerZh: '我们通过空运、海运和快递（DHL、FedEx、UPS）发往全球。我们可以安排运输，您也可以使用自己的货运代理。我们有出口 50 多个国家的经验。',
   },
   {
     id: 10,
     category: 'technical',
     question: 'Can you customize the thickness and width?',
+    questionZh: '可以定制厚度和宽度吗？',
     answer: 'Yes, we offer full customization of thickness (0.1 mm - 1.0 mm), width (10 mm - 1600 mm), and perforation patterns. Our engineering team will work with you to develop the optimal specification for your application.',
+    answerZh: '是的，我们可以全面定制厚度（0.1 mm - 1.0 mm）、宽度（10 mm - 1600 mm）和微孔图案。我们的工程团队将与您合作，制定最适合您应用的规格。',
   },
   {
     id: 11,
     category: 'technical',
     question: 'What liner options are available?',
+    questionZh: '有哪些离型膜可选？',
     answer: 'We offer PET, PE, and release paper liners in various thicknesses and release levels. Custom liner printing is also available. The choice of liner depends on your converting process and application requirements.',
+    answerZh: '我们提供 PET、PE 和离型纸等多种材质和剥离力等级的选择。也可提供离型膜定制印刷。离型膜的选择取决于您的加工工艺和应用需求。',
   },
   {
     id: 12,
     category: 'technical',
     question: 'How should the film be stored?',
+    questionZh: '薄膜应如何储存？',
     answer: 'Store in a cool, dry place at 15-25°C and 40-60% relative humidity. Keep away from direct sunlight and heat sources. Under proper storage conditions, the shelf life is 24 months from the date of manufacture.',
+    answerZh: '储存于阴凉干燥处，温度 15-25°C，相对湿度 40-60%。避免阳光直射和热源。在适当储存条件下，自生产之日起保质期为 24 个月。',
   },
   {
     id: 13,
     category: 'company',
     question: 'Where is your factory located?',
+    questionZh: '工厂位于哪里？',
     answer: 'Our manufacturing facility is located in Shenzhen, Guangdong Province, China. We welcome factory audits and visits from qualified customers.',
+    answerZh: '我们的生产基地坐落于中国广东省深圳市。我们欢迎合格客户前来验厂和参观。',
   },
   {
     id: 14,
     category: 'company',
     question: 'Can you provide OEM/ODM services?',
+    questionZh: '能否提供 OEM/ODM 服务？',
     answer: 'Yes, we offer comprehensive OEM and ODM services including custom formulations, custom perforation patterns, custom packaging (private label), and custom slitting/kitting. Our R&D team can develop bespoke solutions for your specific requirements.',
+    answerZh: '是的，我们提供全面的 OEM 和 ODM 服务，包括定制配方、定制微孔图案、定制包装（贴牌）以及定制分切。我们的研发团队可根据您的具体需求开发定制解决方案。',
   },
   {
     id: 15,
     category: 'company',
     question: 'Do you have a quality control system?',
+    questionZh: '你们有质量控制体系吗？',
     answer: 'Yes, we operate under a comprehensive quality management system certified to ISO 13485:2016. Our QC process includes raw material inspection, in-process monitoring, and final product testing. Each batch is tested for adhesive strength, thickness uniformity, perforation quality, and dimensional accuracy.',
+    answerZh: '是的，我们运行着通过 ISO 13485:2016 认证的全面质量管理体系。质控流程包括来料检验、过程监控和成品检测。每批次产品均经过粘附强度、厚度均匀性、微孔质量和尺寸精度的测试。',
   },
 ];

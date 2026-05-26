@@ -1,11 +1,12 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { Application } from '@/data/applications';
+import { Application } from '@/types/application';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 export default function ApplicationShowcase({ applications }: { applications: Application[] }) {
   const t = useTranslations('home.applications');
+  const common = useTranslations('common');
 
   return (
     <section className="bg-white">
@@ -36,7 +37,7 @@ export default function ApplicationShowcase({ applications }: { applications: Ap
         <div className="text-center mt-10">
           <Link href="/applications">
             <Button variant="outline" className="gap-2">
-              {t('viewAll') || 'View All Applications'} <ArrowRight className="h-4 w-4" />
+              {common('viewAll') || 'View All Applications'} <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
         </div>
