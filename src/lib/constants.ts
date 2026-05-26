@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Silicone Gel Film',
   description: 'Professional manufacturer of double-sided silicone gel perforated film for medical and industrial applications.',
-  url: 'https://siliconegelfilm.com',
+  url: 'https://shlchem.com',
   ogImage: '/images/og/default.jpg',
   links: {
     email: '1261457858@qq.com',

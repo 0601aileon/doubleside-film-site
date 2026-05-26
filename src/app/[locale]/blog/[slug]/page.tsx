@@ -1,9 +1,12 @@
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Calendar, Clock, Share2 } from 'lucide-react';
 import { format } from 'date-fns';
+import { getAlternates } from '@/lib/seo';
+import { JsonLdArticle } from '@/components/seo';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -87,13 +90,38 @@ const articles: Record<string, {
   },
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale, slug } = await params;
+  const article = articles[slug];
+  if (!article) return { title: 'Article Not Found' };
+  return {
+    title: article.title,
+    description: article.content[0]?.slice(0, 160) || article.title,
+    alternates: getAlternates(locale, `/blog/${slug}`),
+    openGraph: {
+      title: article.title,
+      description: article.content[0]?.slice(0, 160),
+      type: 'article',
+      publishedTime: article.date,
+    },
+  };
+}
+
 export default async function BlogArticlePage({ params }: Props) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const article = articles[slug];
   if (!article) notFound();
 
   return (
     <article className="container-custom py-12 md:py-16">
+      <JsonLdArticle
+        title={article.title}
+        description={article.content[0]?.slice(0, 160) || article.title}
+        datePublished={article.date}
+        author={article.author}
+        slug={slug}
+        locale={locale}
+      />
       <div className="max-w-3xl mx-auto">
         {/* Back link */}
         <Link href="/blog">

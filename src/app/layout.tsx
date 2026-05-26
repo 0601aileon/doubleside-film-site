@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
+import { siteConfig } from '@/lib/constants';
 import './globals.css';
 
 const geistSans = Geist({
@@ -14,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: 'Double-Sided Silicone Gel Perforated Film | Professional Manufacturer',
     template: '%s | Silicone Gel Film Manufacturer',
@@ -32,7 +34,25 @@ export const metadata: Metadata = {
     title: 'Double-Sided Silicone Gel Perforated Film Manufacturer',
     description:
       'Premium silicone gel perforated film for medical and industrial applications.',
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: 'Double-Sided Silicone Gel Perforated Film Manufacturer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Double-Sided Silicone Gel Perforated Film | Professional Manufacturer',
+    description:
+      'Premium silicone gel perforated film for medical and industrial applications.',
+    images: [siteConfig.ogImage],
   },
 };
 

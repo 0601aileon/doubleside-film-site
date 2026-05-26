@@ -2,11 +2,31 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { getApplicationBySlug } from '@/data/applications';
 import { localizeApplication } from '@/lib/localize';
+import { getAlternates } from '@/lib/seo';
+import { siteConfig } from '@/lib/constants';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { JsonLdBreadcrumb } from '@/components/seo';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
+
+export async function generateMetadata({ params }: Props) {
+  const { locale, slug } = await params;
+  const rawApp = await getApplicationBySlug(slug);
+  if (!rawApp) return { title: 'Application Not Found' };
+  const app = localizeApplication(rawApp, locale);
+  return {
+    title: app.title,
+    description: app.subtitle || app.description?.slice(0, 160),
+    alternates: getAlternates(locale, `/applications/${slug}`),
+    openGraph: {
+      title: app.title,
+      description: app.subtitle || app.description?.slice(0, 160),
+      images: [{ url: app.image || siteConfig.ogImage }],
+    },
+  };
+}
 
 export default async function ApplicationDetailPage({ params }: Props) {
   const { locale, slug } = await params;
@@ -19,6 +39,15 @@ export default async function ApplicationDetailPage({ params }: Props) {
 
   return (
     <div className="container-custom py-12 md:py-16">
+      <JsonLdBreadcrumb
+        items={[
+          { name: ct('backToHome'), path: '/' },
+          { name: t('title'), path: '/applications' },
+          { name: app.title, path: `/applications/${slug}` },
+        ]}
+        locale={locale}
+      />
+
       <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
         <Link href="/" className="hover:text-foreground">{ct('backToHome')}</Link>
         <span>/</span>

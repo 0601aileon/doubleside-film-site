@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { getAllProducts } from '@/data/products';
 import { localizeProducts } from '@/lib/localize';
+import { getAlternates } from '@/lib/seo';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -22,7 +23,7 @@ type Props = {
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'products' });
-  return { title: t('title'), description: t('subtitle') };
+  return { title: t('title'), description: t('subtitle'), alternates: getAlternates(locale, '/products') };
 }
 
 export default async function ProductsPage({ params, searchParams }: Props) {

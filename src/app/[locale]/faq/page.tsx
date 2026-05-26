@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { faqs } from '@/data/faqs';
 import { localizeFAQs } from '@/lib/localize';
+import { getAlternates } from '@/lib/seo';
 import { Button } from '@/components/ui/button';
 import {
   Accordion,
@@ -10,13 +11,14 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { ArrowRight, MessageCircle } from 'lucide-react';
+import { JsonLdFAQ } from '@/components/seo';
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'faq' });
-  return { title: t('title'), description: t('subtitle') };
+  return { title: t('title'), description: t('subtitle'), alternates: getAlternates(locale, '/faq') };
 }
 
 const categories = ['product', 'ordering', 'technical', 'company'] as const;
@@ -36,6 +38,7 @@ export default async function FAQPage({ params }: Props) {
 
   return (
     <div className="container-custom py-12 md:py-16">
+      <JsonLdFAQ items={localizedFaqs.map(f => ({ question: f.question, answer: f.answer }))} />
       <div className="max-w-2xl mb-10">
         <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{t('title')}</h1>
         <p className="mt-3 text-lg text-muted-foreground">

@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { getApplications } from '@/data/applications';
 import { localizeApplications } from '@/lib/localize';
+import { getAlternates } from '@/lib/seo';
 import { ArrowRight } from 'lucide-react';
 
 type Props = { params: Promise<{ locale: string }> };
@@ -9,7 +10,7 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'applications' });
-  return { title: t('title'), description: t('subtitle') };
+  return { title: t('title'), description: t('subtitle'), alternates: getAlternates(locale, '/applications') };
 }
 
 export default async function ApplicationsPage({ params }: Props) {

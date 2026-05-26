@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { getProductBySlug, getRelatedProducts } from '@/data/products';
 import { localizeProduct } from '@/lib/localize';
+import { getAlternates } from '@/lib/seo';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -22,6 +23,7 @@ import {
 } from '@/components/ui/card';
 import { CheckCircle, ArrowRight, Download, FileText, Ruler, Thermometer, Calendar, Droplets } from 'lucide-react';
 import InquiryForm from '@/components/shared/inquiry-form';
+import { JsonLdBreadcrumb, JsonLdProduct } from '@/components/seo';
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -35,6 +37,7 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: localized.name,
     description: localized.subtitle || localized.description?.slice(0, 160),
+    alternates: getAlternates(locale, '/products/' + slug),
   };
 }
 
@@ -71,6 +74,16 @@ export default async function ProductDetailPage({ params }: Props) {
 
   return (
     <div className="container-custom py-12 md:py-16">
+      <JsonLdBreadcrumb
+        items={[
+          { name: ct('backToHome'), path: '/' },
+          { name: t('title'), path: '/products' },
+          { name: localized.name, path: `/products/${slug}` },
+        ]}
+        locale={locale}
+      />
+      <JsonLdProduct product={localized} locale={locale} />
+
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
         <Link href="/" className="hover:text-foreground">{ct('backToHome')}</Link>

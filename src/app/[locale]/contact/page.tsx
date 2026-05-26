@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { siteConfig } from '@/lib/constants';
+import { getAlternates } from '@/lib/seo';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import InquiryForm from '@/components/shared/inquiry-form';
 
@@ -8,7 +9,7 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'contact' });
-  return { title: t('title'), description: t('subtitle') };
+  return { title: t('title'), description: t('subtitle'), alternates: getAlternates(locale, '/contact') };
 }
 
 export default async function ContactPage() {

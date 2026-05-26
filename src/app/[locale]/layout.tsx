@@ -6,6 +6,7 @@ import { Toaster } from '@/components/ui/sonner';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import BackToTop from '@/components/shared/back-to-top';
+import { JsonLdOrganization } from '@/components/seo';
 
 type Props = {
   children: React.ReactNode;
@@ -18,19 +19,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Omit<Props, 'children'>) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'nav' });
 
-  return {
-    alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        en: '/en',
-        zh: '/zh',
-        es: '/es',
-        de: '/de',
-      },
-    },
-  };
+  return {};
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
@@ -44,6 +34,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider messages={messages}>
+      <JsonLdOrganization />
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />

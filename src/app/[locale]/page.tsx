@@ -8,8 +8,26 @@ import CTABanner from '@/components/home/cta-banner';
 import { getFeaturedProducts } from '@/data/products';
 import { getApplications } from '@/data/applications';
 import { localizeProducts, localizeApplications } from '@/lib/localize';
+import { getAlternates } from '@/lib/seo';
+import { siteConfig } from '@/lib/constants';
+import { getTranslations } from 'next-intl/server';
 
 type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'home' });
+  return {
+    title: t('hero.title'),
+    description: t('hero.subtitle'),
+    alternates: getAlternates(locale, '/'),
+    openGraph: {
+      title: t('hero.title'),
+      description: t('hero.subtitle'),
+      images: [{ url: siteConfig.ogImage }],
+    },
+  };
+}
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
