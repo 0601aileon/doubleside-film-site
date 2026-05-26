@@ -4,7 +4,7 @@ export const siteConfig = {
   url: 'https://siliconegelfilm.com',
   ogImage: '/images/og/default.jpg',
   links: {
-    email: 'info@siliconegelfilm.com',
+    email: '1261457858@qq.com',
     phone: '+86-XXX-XXXXXXX',
     whatsapp: '+86-XXX-XXXXXXX',
     linkedin: '#',
